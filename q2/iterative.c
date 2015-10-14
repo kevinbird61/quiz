@@ -1,9 +1,12 @@
 #include <stdio.h>
 #include <string.h>
-
+#include <time.h>
 char smallest_character(char str[],char c);
 int main(int argc,char *argv[])
 {
+	/* For time estimate */	
+	clock_t start,end;
+	start = clock();
     /* setting variable */
     char judge_c,result_c;
     /* Sorted array */
@@ -30,6 +33,8 @@ int main(int argc,char *argv[])
     /* Implement smallest_character */
     result_c = smallest_character(array,judge_c);
     printf("Output: [%c]\n",result_c);
+   	end = clock();
+   	printf("%lf\n", (end-start)/(double)(CLOCKS_PER_SEC));
     return 0;
 }
 
