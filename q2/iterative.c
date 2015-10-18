@@ -4,7 +4,7 @@
 char smallest_character(char str[],char c);
 int main(int argc,char *argv[])
 {
-	FILE *fp = fopen("analysis_time_iterative.txt","a");
+    FILE *fp = fopen("analysis_time_iterative.txt","a");
     /* For time estimate */
     clock_t start,end;
     double result;
@@ -38,14 +38,14 @@ int main(int argc,char *argv[])
     end = clock();
     result = (end-start)/(double)(CLOCKS_PER_SEC);
     printf("%lf\n", result );
-    if(argv[2][1]!='\0'&&argv[2][2]!='\0'&&argv[2][3]!='\0'){
-    fprintf(fp,"%c%c%c%c		%-10lf\n",argv[2][0],argv[2][1],argv[2][2],argv[2][3],result);}
-    else if(argv[2][1]!='\0'&&argv[2][2]!='\0'){
-    fprintf(fp,"%c%c%c		%-10lf\n",argv[2][0],argv[2][1],argv[2][2],result);}
-    else if(argv[2][1]!='\0'){
-    fprintf(fp,"%c%c		%-10lf\n",argv[2][0],argv[2][1],result);}
-    else{
-    fprintf(fp,"%c		%-10lf\n",argv[2][0],result);
+    if(argv[2][1]!='\0'&&argv[2][2]!='\0'&&argv[2][3]!='\0') {
+        fprintf(fp,"%c%c%c%c		%-10lf\n",argv[2][0],argv[2][1],argv[2][2],argv[2][3],result);
+    } else if(argv[2][1]!='\0'&&argv[2][2]!='\0') {
+        fprintf(fp,"%c%c%c		%-10lf\n",argv[2][0],argv[2][1],argv[2][2],result);
+    } else if(argv[2][1]!='\0') {
+        fprintf(fp,"%c%c		%-10lf\n",argv[2][0],argv[2][1],result);
+    } else {
+        fprintf(fp,"%c		%-10lf\n",argv[2][0],result);
     }
     return 0;
 }
