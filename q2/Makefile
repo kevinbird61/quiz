@@ -17,5 +17,19 @@ DoIter:
 DoRecu:
 	$(foreach var,$(CHARACTERS),./recursive $(var) ;)
 
+DoItLoop:iterative
+	@num=1 ; while [ $$num -le 1000 ] ; do \
+        echo "Times of $$num" ; \
+        ./iterative 'm' $$num; \
+        num=`expr $$num + 1` ; \
+    done	
+
+DoReLoop:recursive
+	@num=1 ; while [ $$num -le 1000 ] ; do \
+        echo "Times of $$num" ; \
+        ./recursive 'm' $$num; \
+        num=`expr $$num + 1` ; \
+    done
+
 clean:
 	$(RM) $(EXEC) *.o perf.*
