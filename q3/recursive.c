@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 typedef struct _Binary_Tree {
     int value;
@@ -12,21 +13,33 @@ void Init(BT *root,int append);
 void Print(BT *root);
 void flatten_recur(BT *root);
 
-int main()
+int main(int argc,char *argv[])
 {
+	FILE *fp = fopen("analysis_time_recursive.txt","a");
+	clock_t start,end;
+	double result;
     BT *root = malloc(sizeof(BT));
     concat = malloc(sizeof(BT));
     root->left = NULL;
     root->right = NULL;
     int i;
     /* Build the Example Tree*/
-    for(i=1; i<=6; i++) {
+    for(i=1; i<=100; i++) {
         Init(root,i);
     }
     /* Print Test */
     Print(root);
     /* flatten the Tree */
+	start=clock();
     flatten_recur(root);
+    end=clock();
+    result = (end-start)/(double)(CLOCKS_PER_SEC);
+    printf("%lf\n", result );
+    if(argv[1][1]!='\0'){
+    fprintf(fp,"%c%c		%-10lf\n",argv[1][0],argv[1][1],result);}
+    else{
+    fprintf(fp,"%c		%-10lf\n",argv[1][0],result);
+    }
     /* Check it */
     printf("=============================\n");
     Print(root);
